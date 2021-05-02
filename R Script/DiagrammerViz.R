@@ -6,6 +6,8 @@ require(shorty) ## Package on Github
 ## PoC WD
 # Set your working directory where template files are filled out
 
+setwd("~/R Scripts and Projects/Projects/Text_to_Mermaid_Viz/Data Model Diagram")
+
 ff <- file_frame(getwd())
 
 poc <- read_excel(ff$File_path[1], sheet = 1)
