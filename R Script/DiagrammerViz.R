@@ -1,3 +1,5 @@
+
+
 require(DiagrammeR)
 require(readxl)
 require(tidyverse)
@@ -6,13 +8,13 @@ require(shorty) ## Package on Github
 ## PoC WD
 # Set your working directory where template files are filled out
 
-setwd("~/R Scripts and Projects/Projects/Text_to_Mermaid_Viz/Data Model Diagram")
+setwd("~/R Projects/My Projects/Text_to_Mermaid_Viz/Data Model Diagram")
 
 ff <- file_frame(getwd())
 
-poc <- read_excel(ff$File_path[1], sheet = 1)
+poc <- read_excel(ff$File_path[2], sheet = 1)
 
-dd <- read_excel(ff$File_path[1], sheet = 2)
+dd <- read_excel(ff$File_path[2], sheet = 2)
   
 poc_level_1 <- poc %>% 
   select(Starting) %>% 
@@ -35,7 +37,7 @@ poc_join <- poc %>%
   mutate(Detail_ind = if_else(is.na(Detail),1,0)) %>% 
   mutate(string = if_else(Detail_ind == 0, 
                           paste(Starting_position, "[", Starting,"]", "--", Detail, "-->", End_position, "[", End,"]", sep = ""),
-                          paste(Starting_position, "[", Starting,"]", "-->", End_position, "[", End,"]", sep = "")))
+                          paste(Starting_position, "[", Starting, "<br> ", Duration, " Weeks","]", "-->", End_position, "[", End,"]", sep = "")))
 
 
 
@@ -53,4 +55,12 @@ mmd <- pl2 %>%
 mmd <- mmd$string
 
 mermaid(mmd)
+
+
+##****************************************************************************
+
+
+
+
+
 
